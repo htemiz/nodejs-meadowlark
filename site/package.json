@@ -12,5 +12,8 @@
   "dependencies": {
     "express-handlebars": "^6.0.7",
     "express3-handlebars": "^0.5.2"
+  },
+  "devDependencies": {
+    "mocha": "^10.2.0"
   }
 }
