@@ -1,3 +1,5 @@
+var express = require('express');
+
 var app = express();
 
 var handlebars = require('express3-handlebars')
@@ -24,6 +26,12 @@ app.get('/about', function(req, res){
     res.render('about', {fortune:fortune.getFortune() /*randomFortune*/});
     // res.type('text/plain');
     // res.send('About Meadowlark Travel');
+});
+
+app.use(function(req, res, next){
+    res.locals.showTests = app.get('env') !== 'production' &&
+        req.query.test === '1';
+    next();
 });
 
 app.use(express.static(__dirname + '/public'));
