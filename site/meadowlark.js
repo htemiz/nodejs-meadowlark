@@ -76,11 +76,14 @@ app.get('/headers', function (req, res){
 });
 
 app.get('/greeting', function (req, res){
+
+    console.log("QUERYSTYLE: ", req.query.style);
+
     res.render('about', {
         message:'welcome',
-        style:req.query.style,
-        userid: req.cookie.userid,
-        username:req.session.username,
+        style:req.query.style
+        // userid: req.cookie.userid,
+        // username:req.session.username,
     });
 });
 
@@ -152,6 +155,20 @@ app.get('/api/tours', function (req,res){
         }
     });
 })
+
+
+app.get('/headers', function (req, res) {
+    res.set('Content-Type','text/plain');
+    var s = '';
+    for(var name in req.headers)
+        s +=name + ': ' + req.headers[name] + '\n';
+    res.send(s);
+});
+
+
+app.disable('x-powered-by');
+
+
 // **************************************************** //
 
 
